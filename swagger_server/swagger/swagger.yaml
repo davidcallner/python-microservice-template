@@ -9,7 +9,7 @@ servers:
 - url: https://localhost:8080/
 - url: https://localhost:8080/
 paths:
-  /record/status:
+  /status:
     get:
       tags:
       - getStatus
@@ -36,7 +36,7 @@ paths:
           description: Internal Server Error
         "504":
           description: Gateway timeout
-      x-openapi-router-controller: swagger_server.controllers.get_records_status_controller
+      x-openapi-router-controller: swagger_server.controllers.get_status_controller
 components:
   schemas:
     record:
@@ -51,4 +51,3 @@ components:
           example: Huntsville International
       example:
         status: true
-
