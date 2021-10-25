@@ -5,17 +5,17 @@ from __future__ import absolute_import
 from flask import json
 from six import BytesIO
 
-from swagger_server.models.record import Record  # noqa: E501
+from swagger_server.models.record_status import RecordStatus  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 
-class TestGetStatusController(BaseTestCase):
-    """GetStatusController integration test stubs"""
+class TestGetStatusDataController(BaseTestCase):
+    """GetStatusDataController integration test stubs"""
 
     def test_get_status(self):
         """Test case for get_status
 
-        Gets the status
+        Gets all the status data
         """
         response = self.client.open(
             '//record/status',

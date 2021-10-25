@@ -1,19 +1,18 @@
 openapi: 3.0.0
 info:
-  title: Scaffoled Microservice
-  description: Scaffoled Microservice design / specification
+  title: MyTSA Tech Challenge API
+  description: This is a MyTSA API interface design / specification
   license:
-    name: Scaffoled Microservice API
+    name: MyTSA Tech Challenge API
   version: 0.0.1
 servers:
 - url: https://localhost:8080/
-- url: https://localhost:8080/
 paths:
-  /status:
+  /record/status:
     get:
       tags:
-      - getStatus
-      summary: Gets the status
+      - get status data
+      summary: Gets all the status data
       operationId: get_status
       responses:
         "200":
@@ -21,7 +20,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/record'
+                $ref: '#/components/schemas/RecordStatus'
         "400":
           description: Bad Request
         "401":
@@ -36,18 +35,19 @@ paths:
           description: Internal Server Error
         "504":
           description: Gateway timeout
-      x-openapi-router-controller: swagger_server.controllers.get_status_controller
+      x-openapi-router-controller: swagger_server.controllers.get_record_status_data_controller
 components:
   schemas:
-    record:
+    RecordStatus:
       type: array
       items:
-        $ref: '#/components/schemas/recordModel'
-    recordModel:
+        $ref: '#/components/schemas/StatusModel'
+    StatusModel:
       type: object
       properties:
         status:
           type: string
-          example: Huntsville International
+          example: "yes"
       example:
-        status: true
+        status: "yes"
+
