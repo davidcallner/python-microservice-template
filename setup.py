@@ -17,10 +17,10 @@ REQUIRES = ["connexion"]
 setup(
     name=NAME,
     version=VERSION,
-    description="MyTSA Tech Challenge API",
+    description="Tech Challenge API",
     author_email="",
     url="",
-    keywords=["Swagger", "MyTSA Tech Challenge API"],
+    keywords=["Swagger", "Tech Challenge API"],
     install_requires=REQUIRES,
     packages=find_packages(),
     package_data={'': ['swagger/swagger.yaml']},
@@ -28,6 +28,6 @@ setup(
     entry_points={
         'console_scripts': ['swagger_server=swagger_server.__main__:main']},
     long_description="""\
-    This is a MyTSA API interface design / specification
+    This is a Tech Challenge API interface design / specification
     """
 )

@@ -1,19 +1,19 @@
 openapi: 3.0.0
 info:
-  title: MyTSA Tech Challenge API
-  description: This is a MyTSA API interface design / specification
+  title: Tech Challenge API
+  description: This is a Tech Challenge API interface design / specification
   license:
-    name: MyTSA Tech Challenge API
+    name: Tech Challenge API
   version: 0.0.1
 servers:
 - url: https://localhost:8080/
 paths:
-  /record/status:
+  /records:
     get:
       tags:
-      - get status data
-      summary: Gets all the status data
-      operationId: get_status
+      - get records
+      summary: Gets all the records
+      operationId: get_record
       responses:
         "200":
           description: OK
@@ -35,13 +35,70 @@ paths:
           description: Internal Server Error
         "504":
           description: Gateway timeout
-      x-openapi-router-controller: swagger_server.controllers.get_record_status_data_controller
+      x-openapi-router-controller: swagger_server.controllers.get_records_controller
+  /records/create:
+    post:
+      tags:
+      - create records
+      summary: Creates a new record.
+      operationId: create_record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Record'
+        required: true
+      responses:
+        "201":
+          description: Created
+        "415":
+          description: Unsupported Media Type / Unspecified Content Type
+        "500":
+          description: Internal Server Error
+        "504":
+          description: Gateway timeout
+      x-openapi-router-controller: swagger_server.controllers.create_records_controller
+  /records/{recordId}:
+    get:
+      tags:
+      - get a single record
+      summary: Returns a record by ID.
+      operationId: get_recordby_id
+      parameters:
+      - name: recordId
+        in: path
+        description: The ID of the record to return.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: A record object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: The specified record ID is invalid (not a number).
+        "404":
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+      x-openapi-router-controller: swagger_server.controllers.get_a_single_record_controller
 components:
   schemas:
     RecordStatus:
       type: array
       items:
         $ref: '#/components/schemas/StatusModel'
+    Record:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecordModel'
     StatusModel:
       type: object
       properties:
@@ -50,4 +107,23 @@ components:
           example: "yes"
       example:
         status: "yes"
+    RecordModel:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "yes"
+    inline_response_200:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 4
+        name:
+          type: string
+          example: Jessica Smith
+      example:
+        name: Jessica Smith
+        id: 4
 

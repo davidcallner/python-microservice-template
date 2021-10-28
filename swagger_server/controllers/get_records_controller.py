@@ -5,12 +5,12 @@ from swagger_server.models.record_status import RecordStatus  # noqa: E501
 from swagger_server import util
 
 
-def get_status():  # noqa: E501
-    """Gets all the status data
+def get_record():  # noqa: E501
+    """Gets all the records
 
      # noqa: E501
 
 
     :rtype: RecordStatus
     """
-    return 'Success 200'
+    return 'do some magic!'
