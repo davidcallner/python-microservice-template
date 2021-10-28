@@ -5,20 +5,20 @@ from __future__ import absolute_import
 from flask import json
 from six import BytesIO
 
-from swagger_server.models.record import Record  # noqa: E501
+from swagger_server.models.inline_response200 import InlineResponse200  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 
-class TestGetStatusController(BaseTestCase):
-    """GetStatusController integration test stubs"""
+class TestGetASingleRecordController(BaseTestCase):
+    """GetASingleRecordController integration test stubs"""
 
-    def test_get_status(self):
-        """Test case for get_status
+    def test_get_recordby_id(self):
+        """Test case for get_recordby_id
 
-        Gets the status
+        Returns a record by ID.
         """
         response = self.client.open(
-            '//record/status',
+            '//records/{recordId}'.format(record_id=2),
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
