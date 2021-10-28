@@ -13,4 +13,4 @@ def get_status():  # noqa: E501
 
     :rtype: RecordStatus
     """
-    return 'Success 200'
+    return 'Success'
