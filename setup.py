@@ -17,7 +17,7 @@ REQUIRES = ["connexion"]
 setup(
     name=NAME,
     version=VERSION,
-    description="Tech Challenge API",
+    description="Tech Challenge API TF",
     author_email="",
     url="",
     keywords=["Swagger", "Tech Challenge API"],
