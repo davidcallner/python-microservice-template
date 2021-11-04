@@ -36,6 +36,34 @@ paths:
         "504":
           description: Gateway timeout
       x-openapi-router-controller: swagger_server.controllers.get_records_controller
+  /records/status:
+    get:
+      tags:
+      - get records
+      summary: Gets all the records
+      operationId: get_status
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordStatus'
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "415":
+          description: Unsupported Media Type / Unspecified Content Type
+        "500":
+          description: Internal Server Error
+        "504":
+          description: Gateway timeout
+      x-openapi-router-controller: swagger_server.controllers.get_status_controller
   /records/create:
     post:
       tags:
